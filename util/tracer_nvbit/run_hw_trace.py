@@ -17,7 +17,7 @@ import common
 import re
 import datetime
 
-# We will look for the benchmarks 
+# We will look for the benchmarks
 parser = OptionParser()
 parser.add_option("-B", "--benchmark_list", dest="benchmark_list",
                  help="a comma seperated list of benchmark suites to run. See apps/define-*.yml for " +\
@@ -26,7 +26,7 @@ parser.add_option("-B", "--benchmark_list", dest="benchmark_list",
 parser.add_option("-D", "--device_num", dest="device_num",
                  help="CUDA device number",
                  default="0")
-parser.add_option("-n", "--norun", dest="norun", action="store_true", 
+parser.add_option("-n", "--norun", dest="norun", action="store_true",
                  help="Do not actually run the apps, just create the dir structure and launch files")
 parser.add_option("-l", "--limit_kernel_number", dest='kernel_number', default=-99, help="Sets a hard limit to the " +\
                         "number of traced limits")
@@ -84,7 +84,7 @@ for bench in benchmarks:
         if('mlperf' in exec_path):
             exec_path = '. '+exec_path
             if(options.kernel_number > 0):
-                os.environ['DYNAMIC_KERNEL_LIMIT_END'] = str(options.kernel_number)                
+                os.environ['DYNAMIC_KERNEL_LIMIT_END'] = str(options.kernel_number)
             else:
                 os.environ['DYNAMIC_KERNEL_LIMIT_END'] = '1000'
         else:
@@ -97,7 +97,7 @@ for bench in benchmarks:
 	# then, we do post-processing for the traces and generate (.traceg and kernelslist.g files)
 	# then, we delete the intermediate files ((.trace and kernelslist files files)
         sh_contents += "\nexport CUDA_VERSION=\"" + cuda_version + "\"; export CUDA_VISIBLE_DEVICES=\"" + options.device_num + "\" ; " +\
-            "LD_PRELOAD=" + os.path.join(nvbit_tracer_path, "tracer_tool.so") + " " + exec_path +\
+            "export LD_PRELOAD=" + os.path.join(nvbit_tracer_path, "tracer_tool.so") + " ; " + exec_path +\
             " " + str(args) + " ; " + os.path.join(nvbit_tracer_path,"traces-processing", "post-traces-processing") + " " +\
             os.path.join(this_trace_folder, "kernelslist") + " ; rm -f " + this_trace_folder + "/*.trace ; rm -f " + this_trace_folder + "/kernelslist "
 

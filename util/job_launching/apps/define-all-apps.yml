@@ -8,7 +8,77 @@
 #           ...
 #       ...
 # If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
-
+nv-tpch:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/2.0-ft/"
+    execs:
+        # - rapids-bench.sh:
+        #     - args: q1 5
+        #       accel-sim-mem: 2G
+        - rapids-bench.sh:
+            - args: q2 33
+              accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q3 13
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q4 9
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q5 29
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q6 5
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q7 5
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q8 109
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q9 205
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q10 29
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q11 25
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q12 5
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q13 37
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q14 17
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q15 21 bigfile
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q16 25 #61
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q17 27
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q18 37
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q19 5
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q20 9
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q21 9
+        #       accel-sim-mem: 2G
+        # - rapids-bench.sh:
+        #     - args: q22 9
+        #       accel-sim-mem: 2G
+      
 # Rodinia 2.0 implemented with a pass/fail functional test
 rodinia_2.0-ft:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"

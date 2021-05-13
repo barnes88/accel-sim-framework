@@ -100,6 +100,36 @@ FLUSHL1:
 PWR_ENABLE:
     extra_params: "-power_simulation_enabled 1"
 
+PWR_480:
+    extra_params: "-power_simulation_enabled 1 -gpuwattch_xml_file gpuwattch_gtx480.xml"
+
+40_SM:
+    extra_params: "-gpgpu_n_clusters 40 -gpgpu_n_mem 16"
+
+20_SM:
+    extra_params: "-gpgpu_n_clusters 20 -gpgpu_n_mem 8"
+
+10_SM:
+    extra_params: "-gpgpu_n_clusters 10 -gpgpu_n_mem 4"
+
+5_SM:
+    extra_params: "-gpgpu_n_clusters 5 -gpgpu_n_mem 2"
+
+4_ISSUE:
+    extra_params: "-gpgpu_max_insn_issue_per_warp 4"
+
+SCHED_SKEW:
+    extra_params: "-gpgpu_skew_sched_warp_assign 1"
+
+TRACE_LIVENESS:
+    extra_params: "-trace_enabled 1 -trace_components LIVENESS -trace_sampling_core -1"
+
+TRACE_WARP_SCHEDULER:
+    extra_params: "-trace_enabled 1 -trace_components WARP_SCHEDULER -trace_sampling_core -1"
+
+TRACE_WARP_SCHEDULER_SM1:
+    extra_params: "-trace_enabled 1 -trace_components WARP_SCHEDULER -trace_sampling_core 1"
+
 LOCALXBAR:
     extra_params: "-network_mode 2 -icnt_in_buffer_limit 512  -icnt_out_buffer_limit 512  -icnt_subnets 2"
 

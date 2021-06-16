@@ -260,9 +260,9 @@ bool trace_warp_inst_t::parse_from_trace_struct(
     break;
   case OP_BAR:
     // TO DO: fill this correctly
-    /* bar_id = 0; */
-    /* bar_count = (unsigned)-1; */
-    /* bar_type = SYNC; */
+    bar_id = 0;
+    bar_count = (unsigned)-1;
+    bar_type = SYNC;
     // TO DO
     // if bar_type = RED;
     // set bar_type

@@ -8,6 +8,28 @@
 #           ...
 #       ...
 # If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
+cudaDMA:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/2.0-ft/"
+    execs:
+        - saxpy_cudaDMA:
+            - args:
+              accel-sim-mem: 2G
+        - sgemv:
+            - args:
+              accel-sim-mem: 2G
+        - stencil2D:
+            - args:
+              accel-sim-mem: 2G
+
+snappy:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/2.0-ft/"
+    execs:
+        - snappy.sh:
+            - args: q2 33
+              accel-sim-mem: 2G
+
 nv-tpch:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
     data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/2.0-ft/"

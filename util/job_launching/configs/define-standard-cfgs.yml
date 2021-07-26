@@ -121,6 +121,18 @@ PWR_480:
 SCHED_SKEW:
     extra_params: "-gpgpu_skew_sched_warp_assign 1"
 
+SCHED_DYNAMIC_PROFILE:
+    extra_params: "-gpgpu_dynamic_sched_warp_profile 1"
+
+SCHED_DYNAMIC_ASSIGN:
+    extra_params: "-gpgpu_dynamic_sched_warp_assign 1"
+
+TB_SAMPLING:
+    extra_params: "-gpgpu_TB_sampling 1"
+
+DISTRIB_PROFILE_DATA:
+    extra_params: "-gpgpu_distrib_profile_data 1"
+
 TRACE_LIVENESS:
     extra_params: "-trace_enabled 1 -trace_components LIVENESS -trace_sampling_core -1"
 

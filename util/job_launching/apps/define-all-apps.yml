@@ -511,9 +511,13 @@ ggnn:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
     data_dirs: "$GPUAPPS_ROOT/data_dirs/ggnn/"
     execs:
-        - sift1m_multi:
-            - args: --base_filename data_dirs/sift/sift_base.fvecs --query_filename data_dirs/sift/sift_query.fvecs --groundtruth_filename data_dirs/sift/sift_groundtruth.ivecs
-              accel-sim-mem: 20G
+        ## Sift1m is too big to trace / simulate (10s of terabytes of traces)
+        # - sift1m_multi:
+        #     - args: --base_filename data_dirs/sift/sift_base.fvecs --query_filename data_dirs/sift/sift_query.fvecs --groundtruth_filename data_dirs/sift/sift_groundtruth.ivecs
+        #       accel-sim-mem: 20G
+        - sift10k_multi:
+            - args: --base_filename data_dirs/siftsmall/siftsmall_base.fvecs --query_filename data_dirs/siftsmall/siftsmall_query.fvecs --groundtruth_filename data_dirs/siftsmall/siftsmall_groundtruth.ivecs
+              accel-sim-mem: 20G           
 
 cutlass_5_trace:
     exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"

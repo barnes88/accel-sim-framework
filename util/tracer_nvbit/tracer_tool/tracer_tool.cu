@@ -388,6 +388,19 @@ void nvbit_at_cuda_event(CUcontext ctx, int is_exit, nvbit_api_cuda_t cbid,
       CUDA_SAFECALL(cuFuncGetAttribute(&binary_version,
                                        CU_FUNC_ATTRIBUTE_BINARY_VERSION, p->f));
 
+
+      unsigned int cluster_dimX;
+      CUDA_SAFECALL(cuFuncGetAttribute(&cluster_dimX,
+                                       CU_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_WIDTH, p->f));
+
+      unsigned int cluster_dimY;
+      CUDA_SAFECALL(cuFuncGetAttribute(&cluster_dimY,
+                                       CU_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_HEIGHT, p->f));
+                              
+      unsigned int cluster_dimZ;
+      CUDA_SAFECALL(cuFuncGetAttribute(&cluster_dimZ,
+                                       CU_FUNC_ATTRIBUTE_REQUIRED_CLUSTER_DEPTH, p->f))
+
       instrument_function_if_needed(ctx, p->f);
 
       if (active_region) {
@@ -420,6 +433,7 @@ void nvbit_at_cuda_event(CUcontext ctx, int is_exit, nvbit_api_cuda_t cbid,
                 p->gridDimY, p->gridDimZ);
         fprintf(resultsFile, "-block dim = (%d,%d,%d)\n", p->blockDimX,
                 p->blockDimY, p->blockDimZ);
+        fprintf(resultsFile, "-cluster dim = (%u,%u,%u)\n", cluster_dimX, cluster_dimY, cluster_dimZ);
         fprintf(resultsFile, "-shmem = %d\n",
                 shmem_static_nbytes + p->sharedMemBytes);
         fprintf(resultsFile, "-nregs = %d\n", nregs);
